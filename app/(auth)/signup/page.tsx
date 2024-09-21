@@ -1,10 +1,5 @@
 "use client";
 import SignUpHome from "@/app/components/auth-components/signup/SignUpHome";
-import SignUpHomeTwo from "@/app/components/auth-components/signup/SignUpHome";
-import SignUpPassword from "@/app/components/auth-components/signup/SignUpPassword";
-import SignUpPasswordTwo from "@/app/components/auth-components/signup/SignUpPasswordTwo";
-import SignUpVerifyOTP from "@/app/components/auth-components/signup/SignUpVerifyOTP";
-import SignUpVerifyOTPTwo from "@/app/components/auth-components/signup/SignUpVerifyOTPTwo";
 import { useEffect, useState } from "react";
 
 export default function SignUp() {
@@ -21,18 +16,8 @@ export default function SignUp() {
       }`}
     >
       <div className="md:flex justify-between">
-        <SignUpHomeTwo />
+        <SignUpHome />
       </div>
-
-      {/* <div className="md:flex justify-between">
-        <SignUpPassword />
-        <SignUpPasswordTwo />
-      </div> */}
-
-      {/* <div className="md:flex justify-between">
-        <SignUpVerifyOTP />
-        <SignUpVerifyOTPTwo />
-      </div> */}
     </div>
   );
 }

@@ -12,7 +12,7 @@ type VerifyOTPProps = {
 
 export default function VerifyOTP({ setActiveStep }: VerifyOTPProps) {
   const router = useRouter();
-  const [isLoading, setIsLoading] = useState(false);
+  // const [isLoading, setIsLoading] = useState(false);
   const [code, setCode] = useState(["", "", "", "", "", ""]);
   const inputRefs = useRef<(HTMLInputElement | null)[]>([]);
 
@@ -71,10 +71,10 @@ export default function VerifyOTP({ setActiveStep }: VerifyOTPProps) {
       try {
         // const response = await VerifyEmailRequest(body);
         toast.success("otp verified");
-        setTimeout(() => {
-          setIsLoading(false);
-          //   router.push("/");
-        }, 3000);
+        // setTimeout(() => {
+        //   setIsLoading(false);
+        //   //   router.push("/");
+        // }, 3000);
       } catch (error) {
         console.log(error);
       }

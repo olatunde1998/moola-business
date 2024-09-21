@@ -30,13 +30,13 @@ export default function LoginHome() {
   const {
     register,
     handleSubmit,
-    watch,
-    formState: { errors },
+    // watch,
+    // formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
 
   // Watch email and password values
-  const email = watch("email");
-  const password = watch("password");
+  // const email = watch("email");
+  // const password = watch("password");
   // Handle Login Form Submission LOGIC
   const onSubmitHandler = async () => {
     setIsLoading(true);

@@ -26,7 +26,7 @@ const schema = yup.object().shape({
 });
 
 export default function SignUpPassword({ setActiveStep }: SignUpPasswordProps) {
-  const [isLoading, setIsLoading] = useState(false);
+  // const [isLoading, setIsLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
@@ -34,17 +34,17 @@ export default function SignUpPassword({ setActiveStep }: SignUpPasswordProps) {
   const {
     register,
     handleSubmit,
-    watch,
-    formState: { errors },
+    // watch,
+    // formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
 
   // Watch confirmPassword and phoneNumber values
-  const password = watch("password");
-  const confirmPassword = watch("confirmPassword");
+  // const password = watch("password");
+  // const confirmPassword = watch("confirmPassword");
 
   // Handle Login Form Submission LOGIC
   const onSubmitHandler = async () => {
-    setIsLoading(true);
+    // setIsLoading(true);
     toast.success("Signup Successful");
   };
 
