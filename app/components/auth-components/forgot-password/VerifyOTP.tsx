@@ -133,7 +133,7 @@ export default function VerifyOTP({ setActiveStep }: VerifyOTPProps) {
             {/* <form onSubmit={handleSubmit}> */}
             <form>
               {/* =======Verification Code ===== */}
-              <div className="mt-4 flex justify-between gap-2">
+              <div className="mt-4 flex justify-between gap-1 md:gap-2 overflow-scroll">
                 {code.map((digit, index) => (
                   <input
                     key={index}
@@ -145,7 +145,7 @@ export default function VerifyOTP({ setActiveStep }: VerifyOTPProps) {
                     value={digit}
                     onChange={(e) => handleChange(index, e.target.value)}
                     onKeyDown={(e) => handleKeyDown(index, e)}
-                    className="w-16 h-16 text-center text-5xl font-semibold text-black border-2 border-gray-200 px-3 py-2.5 focus:outline-none placeholder:text-sm cursor-text flex justify-between rounded-lg"
+                    className="w-12 h-12 md:w-14 md:h-14 text-2xl text-center md:text-5xl font-semibold text-black border-2 border-gray-200 px-3 py-2.5 focus:outline-none placeholder:text-sm cursor-text flex justify-between rounded-lg"
                   />
                 ))}
               </div>

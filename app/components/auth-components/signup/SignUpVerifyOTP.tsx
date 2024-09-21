@@ -113,7 +113,7 @@ export default function SignUpVerifyOTP({
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="md:w-[518.4px] rounded-lg mx-4 md:mx-0"
+        className="md:w-[518.4px] rounded-lg"
       >
         <div className="bg-white max-w-[440px] md:max-w-[480px] mx-auto md:px-2 lg:px-8  mt-6  py-10 rounded-lg">
           <div className="max-w-[438px] mx-auto px-4 lg:px-0">
@@ -128,13 +128,13 @@ export default function SignUpVerifyOTP({
                 </p>
               </div>
               <div className="bg-[#E8FFF3] rounded-full w-fit p-3 text-[#B6BABD]">
-                <span className="text-[#12CC68] font-semibold">3</span>/
+                <span className="text-[#12CC68] font-semibold">2</span>/
                 <span>3</span>
               </div>
             </div>
             <form onSubmit={handleSubmit}>
               {/* =======Verification Code ===== */}
-              <div className="mt-4 flex justify-between gap-2">
+              <div className="mt-4 flex justify-between gap-1 md:gap-2 overflow-scroll">
                 {code.map((digit, index) => (
                   <input
                     key={index}
@@ -146,7 +146,7 @@ export default function SignUpVerifyOTP({
                     value={digit}
                     onChange={(e) => handleChange(index, e.target.value)}
                     onKeyDown={(e) => handleKeyDown(index, e)}
-                    className="w-16 h-16 text-center text-5xl font-semibold text-black border-2 border-gray-200 px-3 py-2.5 focus:outline-none placeholder:text-sm cursor-text flex justify-between rounded-lg"
+                    className="w-12 h-12 md:w-14 md:h-14 text-2xl text-center md:text-5xl font-semibold text-black border-2 border-gray-200 px-3 py-2.5 focus:outline-none placeholder:text-sm cursor-text flex justify-between rounded-lg"
                   />
                 ))}
               </div>

@@ -19,7 +19,7 @@ export default function SignUpHome() {
         transition={{ duration: 0.5 }}
         className="md:w-[518.4px] rounded-lg mx-4 md:mx-0"
       >
-        <div className="flex flex-col mx-auto px-4 md:items-center mt-10 md:mt-12 xl:mt-5 max-w-[440px] md:max-w-none">
+        <div className="flex flex-col mx-auto md:items-center mt-10 md:mt-12 xl:mt-5 max-w-[440px] md:max-w-none">
           <div>
             <Image
               src="/images/moola-brand-logo-v2.png"

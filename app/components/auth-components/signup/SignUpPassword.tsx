@@ -54,7 +54,7 @@ export default function SignUpPassword({ setActiveStep }: SignUpPasswordProps) {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="md:w-[518.4px] rounded-lg mx-4 md:mx-0"
+        className="md:w-[518.4px] rounded-lg"
       >
         <div className="bg-white max-w-[440px] md:max-w-[480px] mx-auto md:px-2 lg:px-8  mt-6  py-10 rounded-lg">
           <div className="max-w-[438px] mx-auto px-4 lg:px-0">
@@ -66,7 +66,7 @@ export default function SignUpPassword({ setActiveStep }: SignUpPasswordProps) {
                 <p className="text-[#B6BABD]">Enter your account password</p>
               </div>
               <div className="bg-[#E8FFF3] rounded-full w-fit p-3 text-[#B6BABD]">
-                <span className="text-[#12CC68] font-semibold">2</span>/
+                <span className="text-[#12CC68] font-semibold">3</span>/
                 <span>3</span>
               </div>
             </div>
