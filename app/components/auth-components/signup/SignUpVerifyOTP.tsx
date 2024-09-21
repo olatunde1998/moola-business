@@ -1,0 +1,184 @@
+"use client";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useRouter } from "next/navigation";
+import { motion } from "framer-motion";
+import { formatTime } from "@/utils/utils";
+
+type SignUpVerifyOTPProps = {
+  setActiveStep: React.Dispatch<React.SetStateAction<number>>;
+};
+
+export default function SignUpVerifyOTP({
+  setActiveStep,
+}: SignUpVerifyOTPProps) {
+  const router = useRouter();
+  // const [isLoading, setIsLoading] = useState(false);
+  const [code, setCode] = useState(["", "", "", "", "", ""]);
+  const inputRefs = useRef<(HTMLInputElement | null)[]>([]);
+
+  const [minutes, setMinutes] = useState(3);
+  const [seconds, setSeconds] = useState(59);
+
+  const handleChange = (index: number, value: string) => {
+    const newCode = [...code];
+
+    // Handle pasted content
+    if (value.length > 1) {
+      const pastedCode = value.slice(0, 6).split("");
+      for (let i = 0; i < 6; i++) {
+        newCode[i] = pastedCode[i] || "";
+      }
+      setCode(newCode);
+
+      // Focus on the last non-empty input or the first empty one
+      const lastFilledIndex = newCode.findLastIndex((digit) => digit !== "");
+      const focusIndex = lastFilledIndex < 5 ? lastFilledIndex + 1 : 5;
+
+      // Check if the inputRef is not null before focusing
+      if (inputRefs.current[focusIndex]) {
+        inputRefs.current[focusIndex]!.focus();
+      }
+    } else {
+      newCode[index] = value;
+      setCode(newCode);
+
+      // Move focus to the next input field if value is entered
+      if (value && index < 5) {
+        if (inputRefs.current[index + 1]) {
+          inputRefs.current[index + 1]!.focus();
+        }
+      }
+    }
+  };
+
+  const handleKeyDown = (
+    index: number,
+    e: React.KeyboardEvent<HTMLInputElement>
+  ) => {
+    if (e.key === "Backspace" && !code[index] && index > 0) {
+      inputRefs.current[index - 1]?.focus();
+    }
+  };
+
+  const handleSubmit = useCallback(
+    async (e?: React.FormEvent<HTMLFormElement>) => {
+      e?.preventDefault();
+      const verificationCode = code.join("");
+      console.log(verificationCode, "this is the code");
+      // const body = {
+      //   code: verificationCode,
+      // };
+      try {
+        // const response = await VerifyEmailRequest(body);
+        // toast.success(response?.message);
+        setTimeout(() => {
+          toast.success("otp successful");
+          // router.push("/");
+        }, 3000);
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    [code, router]
+  );
+
+  // Auto submit when all fields are filled
+  useEffect(() => {
+    if (code.every((digit) => digit !== "")) {
+      handleSubmit();
+    }
+  }, [code, handleSubmit]);
+
+  // Countdown timer logic
+  useEffect(() => {
+    const countdown = setInterval(() => {
+      if (seconds > 0) {
+        setSeconds(seconds - 1);
+      } else if (seconds === 0 && minutes > 0) {
+        setMinutes(minutes - 1);
+        setSeconds(59);
+      } else if (minutes === 0 && seconds === 0) {
+        clearInterval(countdown);
+      }
+    }, 1000);
+
+    return () => clearInterval(countdown); // Clear the interval on unmount
+  }, [minutes, seconds]);
+
+  return (
+    <>
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        className="md:w-[518.4px] rounded-lg mx-4 md:mx-0"
+      >
+        <div className="bg-white max-w-[440px] md:max-w-[480px] mx-auto md:px-2 lg:px-8  mt-6  py-10 rounded-lg">
+          <div className="max-w-[438px] mx-auto px-4 lg:px-0">
+            <div className="flex justify-between items-center">
+              <div>
+                <p className="font-bold text-[16px]">
+                  Setup your account profile
+                </p>
+                <p className="text-[#B6BABD]">
+                  Enter the 6-digit OTP sent to your phone number or email
+                  address.
+                </p>
+              </div>
+              <div className="bg-[#E8FFF3] rounded-full w-fit p-3 text-[#B6BABD]">
+                <span className="text-[#12CC68] font-semibold">3</span>/
+                <span>3</span>
+              </div>
+            </div>
+            <form onSubmit={handleSubmit}>
+              {/* =======Verification Code ===== */}
+              <div className="mt-4 flex justify-between gap-2">
+                {code.map((digit, index) => (
+                  <input
+                    key={index}
+                    ref={(el) => {
+                      inputRefs.current[index] = el;
+                    }}
+                    type="text"
+                    maxLength={6}
+                    value={digit}
+                    onChange={(e) => handleChange(index, e.target.value)}
+                    onKeyDown={(e) => handleKeyDown(index, e)}
+                    className="w-16 h-16 text-center text-5xl font-semibold text-black border-2 border-gray-200 px-3 py-2.5 focus:outline-none placeholder:text-sm cursor-text flex justify-between rounded-lg"
+                  />
+                ))}
+              </div>
+              <p className="mt-10 text-center text-[#ABABAB]">
+                Resend in:{" "}
+                <span className="text-black">
+                  {" "}
+                  {formatTime(minutes)}:{formatTime(seconds)}
+                </span>
+              </p>
+              <motion.button
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                // disabled={isLoading || code.some((digit) => !digit)}
+                onClick={() => setActiveStep(3)}
+                className="
+                  cursor-pointer bg-[#12CC68] transition duration-500 ease-in-out hover:shadow-[0_0_20px_rgba(31,77,54,0.7)]  px-8 py-4 mt-8 text-[16px] text-white rounded-lg w-full"
+              >
+                Proceed
+              </motion.button>
+            </form>
+          </div>
+        </div>
+        {/* ====== Don't have an account ======  */}
+        {/* <div className="mt-6 xl:mt-10 py-4  flex items-center justify-center text-center text-sm bg-[#E8E9EA4A] max-w-[370px] mx-auto px-2 rounded-lg text-white">
+          <p>Already have an account?</p>
+          <Link href="/" className="ml-2">
+            Login
+          </Link>
+        </div> */}
+      </motion.div>
+      <ToastContainer />
+    </>
+  );
+}
