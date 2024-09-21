@@ -10,7 +10,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 
 export default function ForgotPasswordHome() {
-  const [activeStep, setActiveStep] = useState(1);
+  const [activeStep, setActiveStep] = useState<number>(1);
   return (
     <>
       <motion.div

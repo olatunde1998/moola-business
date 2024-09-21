@@ -1,7 +1,11 @@
 import { Circle } from "lucide-react";
 import { FaCheckCircle } from "react-icons/fa";
 
-export default function Stepper({ activeStep }) {
+type StepperProps = {
+  activeStep: number;
+};
+
+export default function Stepper({ activeStep }: StepperProps) {
   const steps = [
     { title: "Confirm your Email or Phone number" },
     { title: "Verify your information (OTP)" },
@@ -49,7 +53,7 @@ export default function Stepper({ activeStep }) {
                   top: "45px",
                   bottom: "-20px",
                   width: "2px",
-                  height:"72px",
+                  height: "72px",
                   background:
                     "repeating-linear-gradient(to bottom, #B6BABD 0, #B6BABD 5px, transparent 5px, transparent 10px)",
                 }}
