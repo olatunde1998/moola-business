@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+// import { useState } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useForm } from "react-hook-form";
@@ -26,22 +26,22 @@ const schema = yup.object().shape({
 export default function ContactInformation({
   setActiveStep,
 }: ContactInformationProps) {
-  const [isLoading, setIsLoading] = useState(false);
+  // const [isLoading, setIsLoading] = useState(false);
 
   // REACT HOOK FORM LOGIC
   const {
     register,
     handleSubmit,
-    watch,
-    formState: { errors },
+    // watch,
+    // formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
 
   // Watch email and phoneNumber values
-  const email = watch("email");
-  const phoneNumber = watch("phoneNumber");
+  // const email = watch("email");
+  // const phoneNumber = watch("phoneNumber");
   // Handle Login Form Submission LOGIC
   const onSubmitHandler = async () => {
-    setIsLoading(true);
+    // setIsLoading(true);
     toast.success("Signup Successful");
   };
 

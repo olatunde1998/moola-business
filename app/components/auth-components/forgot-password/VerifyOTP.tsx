@@ -2,7 +2,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useRouter } from "next/navigation";
+// import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { formatTime } from "@/utils/utils";
 
@@ -11,7 +11,7 @@ type VerifyOTPProps = {
 };
 
 export default function VerifyOTP({ setActiveStep }: VerifyOTPProps) {
-  const router = useRouter();
+  // const router = useRouter();
   // const [isLoading, setIsLoading] = useState(false);
   const [code, setCode] = useState(["", "", "", "", "", ""]);
   const inputRefs = useRef<(HTMLInputElement | null)[]>([]);
@@ -79,7 +79,7 @@ export default function VerifyOTP({ setActiveStep }: VerifyOTPProps) {
         console.log(error);
       }
     },
-    [code, router]
+    [code]
   );
 
   // Auto submit when all fields are filled
